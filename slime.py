@@ -4,10 +4,27 @@ import math
 
 
 class Slime(ABC):
+    """
+    Abstract base class representing a slime.
+
+    Provides common attributes and behaviour shared
+    by all slime types in the laboratory.
+    """
+
     def __init__(self, slime_id, name, size, base_power=5.0):
+
         self.id = str(slime_id)
+
+        if not name:
+            raise ValueError("Name cannot be empty.")
+
         self.name = name
+
+        if float(size) <= 0:
+            raise ValueError("Size must be greater than zero.")
+
         self.size = float(size)
+
         self.volatility = random.randint(0, 10)
 
         self.base_power = float(base_power)
@@ -31,17 +48,28 @@ class Slime(ABC):
     def size(self, value):
         if not isinstance(value, (int, float)):
             raise TypeError("Size must be numeric")
+
+        if value <= 0:
+            raise ValueError("Size must be greater than zero.")
+
         self._size = float(value)
 
     @abstractmethod
     def get_slime_type(self):
+        """Return the slime type."""
         pass
 
     @abstractmethod
     def get_special_attributes(self):
+        """Return slime-specific attributes."""
         pass
 
     def calculate_power(self):
+        """
+        Calculates the slime's power based on
+        its attributes and special properties.
+        """
+
         power = self.base_power
 
         attributes = self.get_special_attributes()

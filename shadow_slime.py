@@ -2,6 +2,10 @@ from slime import Slime
 
 
 class ShadowSlime(Slime):
+    """
+    Represents a shadow-based slime that
+    uses stealth and darkness abilities.
+    """
 
     def __init__(
             self,
@@ -11,6 +15,7 @@ class ShadowSlime(Slime):
             shadow_density,
             stealth_mode
     ):
+
         super().__init__(
             slime_id,
             name,
@@ -18,13 +23,24 @@ class ShadowSlime(Slime):
             base_power=8.0
         )
 
+        if shadow_density < 0:
+            raise ValueError(
+                "Shadow density cannot be negative."
+            )
+
         self.shadow_density = shadow_density
         self.stealth_mode = stealth_mode
 
     def hide(self):
+        """
+        Enable stealth mode.
+        """
         self.stealth_mode = True
 
     def reveal(self):
+        """
+        Disable stealth mode.
+        """
         self.stealth_mode = False
 
     def get_slime_type(self):

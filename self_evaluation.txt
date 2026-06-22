@@ -1,0 +1,194 @@
+# Self Evaluation – Slime Laboratory Management System
+
+## Student Reflection
+
+This project was developed to demonstrate Object-Oriented Programming principles through the design and implementation of a Slime Laboratory Management System.
+
+The system allows different slime types to be created, managed, enhanced through environmental effects, and combined within a laboratory environment. The project was designed using object-oriented principles to ensure the code is reusable, maintainable, and extensible.
+
+---
+
+## Criterion 1 – Object-Oriented Design
+
+The project demonstrates several Object-Oriented Programming concepts.
+
+### Abstraction
+
+The `Slime` class is implemented as an abstract base class. It defines common behaviour and attributes shared by all slime types while enforcing implementation of slime-specific functionality through abstract methods.
+
+Abstract methods:
+
+* `get_slime_type()`
+* `get_special_attributes()`
+
+This ensures that every slime subclass provides its own implementation.
+
+### Inheritance
+
+Inheritance is demonstrated through:
+
+* `ShadowSlime`
+* `StormSlime`
+
+Both classes inherit from the `Slime` class and reuse common functionality while extending the behaviour with their own unique attributes and methods.
+
+### Encapsulation
+
+Encapsulation is implemented using property methods and validation.
+
+Examples include:
+
+* Validation of slime IDs
+* Validation of slime size values
+* Controlled access to object attributes
+
+This prevents invalid data from being assigned to objects.
+
+### Polymorphism
+
+Polymorphism is demonstrated through the use of abstract methods that are implemented differently by each slime subclass.
+
+The `Laboratory` class can interact with different slime types through the common `Slime` interface without needing to know the exact subclass being used.
+
+### Composition
+
+Composition is demonstrated through the relationship between the `Laboratory` and `Slime` classes.
+
+The laboratory stores and manages multiple slime objects throughout the application.
+
+---
+
+## Criterion 2 – Functionality
+
+The project successfully implements the required functionality.
+
+Implemented features include:
+
+* Creation of Shadow Slimes
+* Creation of Storm Slimes
+* Slime power calculation
+* Environmental interactions through the Weather Station
+* Laboratory management system
+* Adding slimes to the laboratory
+* Removing slimes from the laboratory
+* Combining slimes
+* Explosion simulation during slime combination
+* Slime replication through deep copying
+
+Input validation and exception handling have been added to improve reliability and prevent invalid object creation.
+
+---
+
+## Criterion 3 – Version Control
+
+GitHub Classroom was used during project development.
+
+The repository contains multiple commits documenting the development process.
+
+Version control was used to:
+
+* Track changes
+* Manage project progress
+* Maintain development history
+* Support debugging and testing
+
+Commit messages were written to describe the purpose of each change.
+
+---
+
+## Criterion 4 – Code Structure and Formatting
+
+The project is organised into separate modules according to responsibility.
+
+Files are separated into:
+
+* Slime base class
+* Storm Slime implementation
+* Shadow Slime implementation
+* Weather Station
+* Laboratory
+* Main demonstration program
+
+This structure improves readability and maintainability.
+
+Python naming conventions and coding standards have been followed throughout the project.
+
+---
+
+## Criterion 5 – Documentation
+
+Documentation has been added throughout the project.
+
+This includes:
+
+* Class docstrings
+* Method docstrings
+* README documentation
+* UML class diagram
+
+Comments are used where necessary to explain important sections of logic.
+
+The UML diagram demonstrates the relationships between all project classes and supports the overall system design.
+
+---
+
+## Criterion 6 – Testing
+
+Testing was performed using Pytest.
+
+Unit tests were created for:
+
+* Slime functionality
+* ShadowSlime functionality
+* StormSlime functionality
+* WeatherStation functionality
+* Laboratory functionality
+
+Testing was used to verify:
+
+* Object creation
+* Power calculations
+* Weather effects
+* Slime management
+* Slime combination behaviour
+* Exception handling
+
+The tests help ensure the reliability and correctness of the application.
+
+---
+
+## Challenges Encountered
+
+Several challenges were encountered during development.
+
+The most significant challenges included:
+
+* Designing a flexible class hierarchy
+* Implementing power calculation logic
+* Managing object interactions between classes
+* Implementing slime combination mechanics
+* Handling random behaviour while maintaining predictable program flow
+
+These challenges were addressed through incremental development, testing, and refactoring.
+
+---
+
+## Future Improvements
+
+If additional development time were available, the following improvements could be implemented:
+
+* Additional slime subclasses
+* More complex weather effects
+* Save and load functionality
+* Graphical user interface
+* Enhanced laboratory simulation features
+* More advanced slime breeding mechanics
+* Expanded automated testing
+
+---
+
+## Conclusion
+
+This project successfully demonstrates the application of Object-Oriented Programming principles including abstraction, inheritance, encapsulation, polymorphism, and composition.
+
+The final solution provides a functional slime management system that meets the project requirements while maintaining a clear and extensible design. The project has strengthened my understanding of object-oriented design, software development practices, testing, and documentation.

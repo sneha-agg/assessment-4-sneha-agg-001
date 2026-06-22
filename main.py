@@ -1,66 +1,84 @@
+"""
+Integration demonstration for the
+Slime Laboratory Management System.
+
+This file demonstrates interactions
+between all project classes.
+"""
+
 from shadow_slime import ShadowSlime
 from storm_slime import StormSlime
 from weather_station import WeatherStation
 from laboratory import Laboratory
 
 
-print("\n--- SHADOW SLIME ---")
+def main():
 
-shadow = ShadowSlime(
-    "S001",
-    "Darky",
-    5,
-    8,
-    True
-)
+    print("\n=== SHADOW SLIME ===")
 
-shadow.calculate_power()
+    shadow = ShadowSlime(
+        "S001",
+        "Darky",
+        5,
+        8,
+        True
+    )
 
-print(shadow)
+    shadow.calculate_power()
 
-print("\n--- STORM SLIME ---")
+    print(shadow)
 
-storm = StormSlime(
-    "ST001",
-    "Thunder",
-    7,
-    20,
-    4.5
-)
+    print("\n=== STORM SLIME ===")
 
-storm.calculate_power()
+    storm = StormSlime(
+        "ST001",
+        "Thunder",
+        7,
+        20,
+        4.5
+    )
 
-print(storm)
+    storm.calculate_power()
 
-print("\n--- WEATHER STATION ---")
+    print(storm)
 
-station = WeatherStation(
-    humidity=70,
-    air_pressure=1013
-)
+    print("\n=== WEATHER STATION ===")
 
-station.boost_storm(storm)
+    station = WeatherStation(
+        humidity=70,
+        air_pressure=1013
+    )
 
-storm.calculate_power()
+    station.boost_storm(storm)
 
-print(storm)
+    storm.calculate_power()
 
-print("\n--- LABORATORY ---")
+    print(storm)
 
-lab = Laboratory()
+    print(
+        station.monitor_conditions()
+    )
 
-lab.add_slime(shadow)
-lab.add_slime(storm)
+    print("\n=== LABORATORY ===")
 
-print(lab)
+    lab = Laboratory()
 
-print("\n--- COMBINE ---")
+    lab.add_slime(shadow)
+    lab.add_slime(storm)
 
-result = lab.combine_slimes(
-    shadow.id,
-    storm.id
-)
+    print(lab)
 
-print(result)
+    print("\n=== COMBINE SLIMES ===")
 
-print(lab)
+    result = lab.combine_slimes(
+        shadow.id,
+        storm.id
+    )
+
+    print(result)
+
+    print(lab)
+
+
+if __name__ == "__main__":
+    main()

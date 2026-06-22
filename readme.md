@@ -1,12 +1,53 @@
 # Slimepocalypse Initiative
 
-COMP1005 – Object-Oriented Programming Project
+**COMP1005 – Object-Oriented Programming Project**
 
-A slime experimentation system built using Object-Oriented Programming principles in Python.
+## GitHub Repository
+
+GitHub Classroom Repository:
+
+https://github.com/sneha-agg/assessment-4-sneha-agg-001.git
+
+
+## Overview
+
+The Slimepocalypse Initiative is a slime experimentation and management system developed using Object-Oriented Programming principles in Python.
+
+The system allows different slime species to be created, managed, enhanced through environmental conditions, and combined within a laboratory environment.
+
+This project demonstrates key software engineering and object-oriented design concepts including:
+
+* Abstraction
+* Encapsulation
+* Inheritance
+* Polymorphism
+* Composition
+* Exception Handling
+* Unit Testing
+* UML Design
 
 ---
 
-## Project Structure
+# UML Design
+
+A UML Class Diagram has been provided with the submission:
+
+```text
+Slime_Project_UML.puml
+```
+
+The UML diagram documents:
+
+* Class relationships
+* Inheritance hierarchy
+* Composition relationships
+* Dependencies
+* Attributes
+* Methods
+
+---
+
+# Project Structure
 
 ```text
 slime_project/
@@ -25,111 +66,215 @@ slime_project/
 │   ├── test_weather_station.py
 │   └── test_laboratory.py
 │
+├── Slime_Project_UML.puml
 ├── self_evaluation.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
 
-## Requirements
+# Object-Oriented Design
 
-- Python 3.10 or newer
-- pip
-- pytest
-- pytest-cov
+## Abstract Base Class
+
+### Slime
+
+The `Slime` class is implemented as an abstract base class.
+
+Common slime functionality is defined once and reused by all slime types.
+
+Abstract methods:
+
+```python
+get_slime_type()
+get_special_attributes()
+```
+
+These methods must be implemented by all subclasses.
 
 ---
 
-## Ubuntu Setup
+## Inheritance
 
-### Update package list
-
-```bash
-sudo apt update
-```
-
-### Install Python and pip
-
-```bash
-sudo apt install python3 python3-pip python3-venv -y
-```
-
-Verify installation:
-
-```bash
-python3 --version
-pip3 --version
-```
-
----
-
-## Create Virtual Environment
-
-Navigate to the project folder:
-
-```bash
-cd slime_project
-```
-
-Create a virtual environment:
-
-```bash
-python3 -m venv venv
-```
-
-Activate the environment:
-
-```bash
-source venv/bin/activate
-```
-
-You should now see:
+The project uses inheritance to reduce duplication and improve maintainability.
 
 ```text
-(venv)
+Slime
+│
+├── ShadowSlime
+│
+└── StormSlime
 ```
 
-at the beginning of your terminal prompt.
+Each slime type inherits common behaviour while implementing its own specialised functionality.
 
 ---
 
-## Install Dependencies
+## Encapsulation
 
-Install testing packages:
+Encapsulation is achieved through:
 
-```bash
-pip install pytest pytest-cov
+* Properties
+* Setters
+* Validation logic
+
+Examples:
+
+* ID validation
+* Size validation
+* Constructor validation
+
+This prevents invalid object creation and improves reliability.
+
+---
+
+## Polymorphism
+
+Polymorphism is demonstrated through the use of shared interfaces.
+
+Different slime types implement:
+
+```python
+get_slime_type()
+get_special_attributes()
 ```
 
-Verify:
+The `Laboratory` class can work with any slime type through the common `Slime` interface.
 
-```bash
-pytest --version
+---
+
+## Composition
+
+Composition is demonstrated through the relationship between:
+
+```text
+Laboratory -> Slime
+```
+
+The laboratory stores and manages multiple slime objects.
+
+---
+
+# Features
+
+## Shadow Slime
+
+Attributes:
+
+* shadow_density
+* stealth_mode
+
+Methods:
+
+* hide()
+* reveal()
+* calculate_power()
+
+---
+
+## Storm Slime
+
+Attributes:
+
+* lightning_charge
+* rain_intensity
+
+Methods:
+
+* charge_storm()
+* release_lightning()
+* calculate_power()
+
+---
+
+## Weather Station
+
+The Weather Station affects Storm Slimes by modifying environmental conditions.
+
+Methods:
+
+```python
+boost_storm()
+monitor_conditions()
 ```
 
 ---
 
-## Running the Application
+## Laboratory
 
-Execute the main demonstration program:
+The Laboratory is responsible for:
+
+* Adding slimes
+* Removing slimes
+* Managing slime collections
+* Combining slimes
+* Tracking active slime instances
+
+---
+
+# Slime Combination Logic
+
+When two slimes are combined:
+
+1. Volatility values are evaluated.
+2. Explosion probability is calculated.
+3. If an explosion occurs:
+
+   * Both slimes are removed.
+   * "EXPLOSION" is returned.
+4. Otherwise:
+
+   * A parent slime is selected.
+   * A deep copy is created.
+   * The offspring receives a new ID.
+   * The offspring is added to the laboratory.
+
+---
+
+# Exception Handling
+
+Exception handling has been implemented to improve robustness.
+
+Examples include:
+
+* Invalid slime IDs
+* Invalid slime sizes
+* Invalid humidity values
+* Missing slime references
+* Invalid laboratory operations
+
+Exceptions used:
+
+```python
+ValueError
+TypeError
+KeyError
+```
+
+---
+
+# Running the Application
+
+Execute the demonstration program:
 
 ```bash
 python3 main.py
 ```
 
-The program will:
+The program demonstrates:
 
-- Create Shadow Slimes
-- Create Storm Slimes
-- Create a Weather Station
-- Calculate slime powers
-- Store slimes in a Laboratory
-- Demonstrate slime interactions
-- Demonstrate replication/explosion functionality
+* Slime creation
+* Power calculations
+* Weather interactions
+* Laboratory management
+* Slime combination mechanics
 
 ---
 
-## Running Tests
+# Testing
+
+Unit testing is implemented using Pytest.
 
 Run all tests:
 
@@ -137,110 +282,75 @@ Run all tests:
 pytest
 ```
 
-Expected output:
-
-```text
-===== test session starts =====
-...
-5 passed
-```
-
----
-
-## Run Tests Verbosely
+Run verbose tests:
 
 ```bash
 pytest -v
 ```
 
----
-
-## Generate Coverage Report
+Generate a coverage report:
 
 ```bash
 pytest --cov=. --cov-report=term-missing
 ```
 
-Example:
+Testing covers:
+
+* Slime creation
+* Validation logic
+* Power calculation
+* Weather effects
+* Laboratory operations
+* Slime combination behaviour
+
+---
+
+# Requirements
+
+* Python 3.10+
+* pytest
+* pytest-cov
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Documentation
+
+Additional documentation included in this submission:
 
 ```text
-Name                    Stmts   Miss  Cover
---------------------------------------------
-slime.py                  60      2    97%
-shadow_slime.py           18      0   100%
-storm_slime.py            20      0   100%
-weather_station.py        10      0   100%
-laboratory.py             30      1    97%
---------------------------------------------
-TOTAL                    138      3    98%
+README.md
+Slime_Project_UML.puml
+self_evaluation.txt
 ```
 
 ---
 
-## Deactivate Virtual Environment
+# Learning Outcomes
 
-When finished:
+This project demonstrates practical application of:
 
-```bash
-deactivate
-```
-
----
-
-## Creating Submission ZIP
-
-From the directory above the project folder:
-
-```bash
-zip -r slime_project.zip slime_project
-```
-
-Or:
-
-```bash
-tar -czvf slime_project.tar.gz slime_project
-```
+* Object-Oriented Programming
+* Abstract Base Classes
+* Inheritance
+* Encapsulation
+* Polymorphism
+* Composition
+* Exception Handling
+* Unit Testing
+* Software Documentation
 
 ---
 
-## Key OOP Concepts Demonstrated
+# Author
 
-### Encapsulation
+Sneha Aggarwal
 
-- Private attributes
-- Properties
-- Setters with validation
-
-### Inheritance
-
-- ShadowSlime inherits from Slime
-- StormSlime inherits from Slime
-
-### Abstraction
-
-- Slime is an abstract base class
-- Abstract methods enforce implementation
-
-### Polymorphism
-
-- Different slime types implement shared methods differently
-
-### Composition
-
-- Laboratory manages Slime objects
-- WeatherStation interacts with StormSlime
-
-### Testing
-
-- Pytest unit tests
-- Coverage reporting
-
----
-
-## Author
-
-Sneha
-
-COMP1005 Object-Oriented Programming
+COMP1005 – Object-Oriented Programming
 
 Slimepocalypse Initiative Project
