@@ -1,0 +1,54 @@
+@startuml
+
+abstract class Slime {
+    - id : String
+    - name : String
+    - size : float
+    - volatility : float
+    - power : int
+
+    + get_id() : String
+    + get_name() : String
+    + get_size() : float
+    + get_volatility() : float
+    + calculate_power() : int
+    + get_slime_type() : String
+    + get_special_attributes() : String
+}
+
+class StormSlime {
+    - electricity_level : int
+    - storm_intensity : int
+    + calculate_power() : int
+    + get_slime_type() : String
+    + get_special_attributes() : String
+}
+
+class ShadowSlime {
+    - darkness_level : int
+    - stealth_rating : int
+    + calculate_power() : int
+    + get_slime_type() : String
+    + get_special_attributes() : String
+}
+
+class WeatherStation {
+    - weather_type : String
+    + affect_slime(slime : StormSlime)
+    + change_weather()
+}
+
+class Laboratory {
+    - slimes : List<Slime>
+    + add_slime(slime : Slime)
+    + remove_slime(id : String)
+    + combine_slimes(slime1 : Slime, slime2 : Slime)
+    + display_slimes()
+}
+
+Slime <|-- StormSlime
+Slime <|-- ShadowSlime
+Laboratory "1" *-- "*" Slime : contains
+WeatherStation ..> StormSlime : affects
+
+@enduml
